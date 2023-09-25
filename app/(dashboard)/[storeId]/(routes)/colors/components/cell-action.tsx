@@ -1,7 +1,7 @@
 'use client'
 
 import { AlertModal } from "@/components/modals/alert-modal";
-import { SizeColumn } from "./columns";
+import { ColorColumn } from "./columns";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import axios from "axios";
@@ -11,7 +11,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 interface CellActionProps {
-    data: SizeColumn;
+    data: ColorColumn;
 };
 
 export const CellAction: React.FC<CellActionProps> = ({
@@ -25,17 +25,17 @@ export const CellAction: React.FC<CellActionProps> = ({
 
     const onCopy = (id: string) => {
         navigator.clipboard.writeText(id);
-        toast.success("Size id copied to the clipboard.");
+        toast.success("Color id copied to the clipboard.");
     };
 
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
-            toast.success('Size deleted.');
+            await axios.delete(`/api/${params.storeId}/colors/${data.id}`);
+            toast.success('Color deleted.');
             router.refresh();
           } catch (error) {
-            toast.error('Make sure you removed all products using this size first.');
+            toast.error('Make sure you removed all products using this color first.');
           } finally {
             setOpen(false);
             setLoading(false);
@@ -60,7 +60,7 @@ export const CellAction: React.FC<CellActionProps> = ({
                         <Copy className="mr-2 h-4 w-4"/>
                         Copy Id
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}>
+                    <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/colors/${data.id}`)}>
                         <Edit className="mr-2 h-4 w-4"/>
                         Update
                     </DropdownMenuItem>

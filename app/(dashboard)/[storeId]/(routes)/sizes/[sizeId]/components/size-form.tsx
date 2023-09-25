@@ -73,7 +73,7 @@ export const SizeForm:React.FC<SizeFormProps> = ({
     const  onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/sizes/${params.SizeId}`);
+            await axios.delete(`/api/${params.storeId}/sizes/${params.sizeId}`);
             router.refresh();
             router.push(`/${params.storeId}/sizes`);
             toast.success("Size deleted.");
@@ -93,7 +93,7 @@ export const SizeForm:React.FC<SizeFormProps> = ({
                     title={title} description={description}
                 />
                 {initialData && (                    
-                    <Button disabled={loading} variant={"destructive"} size={"sm"} onClick={() => setOpen(true)}>
+                    <Button disabled={loading} variant={"destructive"} size={"icon"} onClick={() => setOpen(true)}>
                         <Trash className="h-4 w-4" />
                     </Button>
                 )}
